@@ -17,7 +17,7 @@ tempo3s = int(tempo3s)
 tempo4s = int(tempo4s)
 tempo5s = int(tempo5s)
 
-duracao_segundos = (tempo1m+tempo2m+tempo3m+tempo4m+tempo5m)*60
+duracao_segundos = (tempo1m + tempo2m + tempo3m + tempo4m + tempo5m)*60
 duracao_segundos += tempo1s + tempo2s + tempo3s + tempo4s + tempo5s
 
 

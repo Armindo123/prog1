@@ -10,9 +10,7 @@ nota3 = float(input("Nota numero 3: "))
 #print(nota3)
 
 
-if nota1 > 20 or nota2 > 20 or nota3 >20:
-    print("Por favor introduza numeros entre 0 e 20")
-elif nota1 < 0 or nota2 < 0 or nota3 < 0:
+if nota1 > 20 or nota2 > 20 or nota3 >20 or nota1 < 0 or nota2 < 0 or nota3 < 0:
     print("Por favor introduza numeros entre 0 e 20")
 else:
     nota1final = nota1 * 0.25

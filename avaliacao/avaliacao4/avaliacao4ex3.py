@@ -3,7 +3,10 @@
 def quadrilatero(linhas, caracter, colunas):
     print(caracter * colunas)
     baixo(linhas)
-    print(caracter * colunas)
+    if linhas == 1:
+        exit
+    else:
+        print(caracter * colunas)
 
 def baixo(linhas):
     igual = caracter + vazio * (colunas - 2) + caracter

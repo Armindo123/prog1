@@ -10,15 +10,10 @@ def quadrilatero(linhas, caracter, colunas):
 
 def baixo(linhas):
     igual = caracter + vazio * (colunas - 2) + caracter
+    igual = str(igual)
     linhas -= 2
-    if linhas > 0:
-        
-        print(igual) 
-        linhas -= 1
-        baixo(linhas)
+    for i in range(linhas):
         print(igual)
-    elif linhas <= 0:
-        exit
 
 
 

@@ -10,11 +10,14 @@ def currency():
     elif b == "E":
         convertorED(a)
         print("{} Euros correspondem a {} Dolars".format(a, convertorED(a)))
+
+
 def convertorDE(a):
             return a / 1.23785
-            
+
 
 def convertorED(a):
             return a / 0.807852325
-            
+
+
 currency()

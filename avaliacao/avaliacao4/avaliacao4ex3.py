@@ -12,7 +12,7 @@ def baixo(linhas):
     igual = caracter + vazio * (colunas - 2) + caracter
     igual = str(igual)
     linhas -= 2
-    for i in range(linhas):
+    for _ in range(linhas):
         print(igual)
 
 

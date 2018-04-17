@@ -1,23 +1,13 @@
 #de 0 a z
 
-def seq(num, z):
+def seq(num):
     
     if num > 0:
         
-        print(z)
-        z += 1
-        num -= 1
-        seq(num, z)
-    elif num < 0:
-        print(z)
-        z -= 1
-        num += 1
-        seq(num, z)
+        seq(num - 1)
         
-    else: print(z)
-    
-
-z = 0
+    if num >= 0:  
+        print(num)
 
 num = int(input("Numero desejado: "))
-seq(num, z)
+seq(num)

@@ -1,7 +1,7 @@
 #conversao E-D D-E
 
-def currency():
-    a, b = input("Introduza uma quantia e D ou E separando com um espaco: ").split()
+def currency(a, b):
+    
     a = float(a)
     b = str(b)
     if b == "D":
@@ -19,5 +19,6 @@ def convertorDE(a):
 def convertorED(a):
             return a / 0.807852325
 
-
-currency()
+a = input("Introduza uma quantia : ")
+b = input("Introduza D ou E (Dolar ou Euro):  ")
+currency(a, b)

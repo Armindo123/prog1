@@ -1,63 +1,61 @@
 #Classe Tabuleiro para o jogo do galo
 
 class Tabuleiro():
-    def __init__(self, token, jogada, lista):
-        self.token = token
-        self.jogada = jogada
-        self.a1 = listaA[0]
-        self.a2 = listaA[1]
-        self.a3 = listaA[2]
-        self.b1 = listaB[0]
-        self.b2 = listaB[1]
-        self.b3 = listaB[2]
-        self.c1 = listaC[0]
-        self.c2 = listaC[1]
-        self.c3 = listaC[2]
-    
-    def completar(self, jogada, lista):
-        if jogada == "A1":
-            listaA[0] = self.token
-            self.a1 = self.token
-        elif jogada == "A2":
-            listaA[1] = self.token
-            self.a2 = self.token
-        elif jogada == "A3":
-            listaA[2] = self.token
-            self.a3 = self.token
-        elif jogada == "B1":
-            listaB[0] = self.token
-            self.b1 = self.token
-        elif jogada == "B2":
-            listaB[1] = self.token
-            self.b2 = self.token
-        elif jogada == "B3":
-            listaB[2] = self.token
-            self.b3 = self.token
-        elif jogada == "C1":
-            listaC[0] = self.token
-            self.c1 = self.token
-        elif jogada == "C2":
-            listaC[1] = self.token
-            self.c2 = self.token
-        elif jogada == "C3":
-            listaC[2] = self.token
-            self.c3 = self.token
+    def __init__(self): #criar campos para colocar os tokens
+        self.A = [None, None, None]
+        self.B = [None, None, None]
+        self.C = [None, None, None]
+        self.lista = [self.A, self.B, self.C]
 
-    def __str__(self):
-        return " |A|B|C|\n1|{}|{}|{}|\n2|{}|{}|{}|\n3|{}|{}|{}|".format(self.a1, self.a2, self.a3, self.b1, self.b2, self.b3, self.c1, self.c2, self.c3)
+    def devolvernumero(self, jogada1): #transformar A B ou C em numero para servir de indice para as listas
+        if jogada1 == "A":
+            return 0
+        elif jogada1 == "B":
+            return 1
+        elif jogada1 == "C":
+            return 2 
 
-listaA = [" "," "," "]
-listaB = [" "," "," "]
-listaC = [" "," "," "]
-lista = [listaA, listaB, listaC]
+    def completar(self, jogada1, jogada2, token): #preencher com o token de cada jogador
+        v = self.devolvernumero(jogada1)
+        if self.lista[v][jogada2] == None:
+            self.lista[v][jogada2] = token
+            return True
+        else:
+            return False
+
+    def __str__(self): #Mostrar o tabuleiro
+        stroutput = "  A|B|C|"
+        for i in range(0, 3):
+            stroutput += "\n" + str(i+1) + "|"
+            for j in range(0, 3):
+                if self.lista[i][j] == None:
+                    stroutput += " |"
+                else:
+                    stroutput += self.lista[i][j] + "|"
+        return stroutput
+
+    def ver(self, token):
+        if (self.lista[0][0]== token and self.lista[0][1] == token and self.lista[0][2] == token) or \
+            (self.lista[1][0] == token and self.lista[1][1] == token and self.lista[1][2] == token) or \
+            (self.lista[2][0] == token and self.lista[2][1] == token and self.lista[2][2] == token) or \
+            (self.lista[0][0] == token and self.lista[1][0] == token and self.lista[2][0] == token) or \
+            (self.lista[0][1] == token and self.lista[1][1] == token and self.lista[2][1] == token) or \
+            (self.lista[0][2] == token and self.lista[1][2] == token and self.lista[2][2] == token) or \
+            (self.lista[0][0] == token and self.lista[1][1] == token and self.lista[2][2] == token) or \
+            (self.lista[0][2] == token and self.lista[1][1] == token and self.lista[2][0] == token):
+            global play
+            print("Vencedor")
+            play = False
+
+
+
+play = True
 token = "X"
-jogada = "A1"
-final = Tabuleiro(token, jogada, lista)
+jogada1 = "A"
+jogada2 = 1
+jogada1 = str(jogada1)
+jogada2 = int(jogada2)
+final = Tabuleiro()
 print(final)
-final.completar(jogada, lista)
-print(final)
-token = "O"
-jogada = "B2"
-final = Tabuleiro(token, jogada, lista)
-final.completar(jogada, lista)
+final.completar(jogada1, jogada2, token)
 print(final)

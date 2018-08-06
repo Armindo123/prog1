@@ -39,27 +39,17 @@ def lista_jogadores_csv(filepath, delim = ",") :
         return data
     return None
 
-def editar_jogador(caminho_ficheiro, lista_jogadores_completa, delim = ","):
-    with open(caminho_ficheiro, "w", newline='') as file:
-        writer = csv.writer(file, delimiter=delim)
-        for line in lista_jogadores_completa:
-            writer.writerow(line)
+def info_jogadores(lista, nomes, tokens):
+    for linha in lista:
+        nome = linha[0]
+        token = linha[1]
+        nomes.append(nome)
+        tokens.append(token)
 
-def listar_info_jogadores(filepath, nomes, tokens, delim = ",") :
-    with open(caminho_ficheiro, "r") as file:
-        data = csv.reader(file, delimiter=delim)
-        for row in data:
-            nome = row[0]
-            token = row[1]
-            nomes.append(nome)
-            tokens.append(token)
-
-def selecionar_jogador(filepath, nome, delim = ","):
-    with open(caminho_ficheiro, "r") as file:
-        data = csv.reader(file, delimiter=delim)
-        for row in data:
-            if nome in row:
-                return row[1], row[2], row[3]
+def selecionar_jogador(lista_jogadores_completa, nome):
+    for utilizador in lista_jogadores_completa:
+        if nome in utilizador:
+            return utilizador[1], utilizador[2], utilizador[3]
     return None
 
 def ordenar_pontos(data):
@@ -68,7 +58,7 @@ def ordenar_pontos(data):
     data.sort(key=lambda data: data[2], reverse = True) #trocar por algoritmo da aula
     return data
                
-def verificar_novo_jogador():
+def verificar_novo_jogador():   #diminuir / segmentar funcao
     jnome = str(input("\nIntroduza o seu nome: "))
     if jnome in nomes:  #caso ja exista
         opcao_igual = True
@@ -76,7 +66,7 @@ def verificar_novo_jogador():
             escolha = str(input("O jogador {} ja existe.\n\nDeseja usar esse jogador?(S/N) ".format(jnome)))
             if escolha == "S":  #e queira usar o que existe
                 opcao_igual = False
-                jtoken, jpontos, jjogos = selecionar_jogador(caminho_ficheiro, jnome)
+                jtoken, jpontos, jjogos = selecionar_jogador(lista_jogadores_completa, jnome)
                 return False, jnome, jtoken, jpontos, jjogos       
             elif escolha == "N":#se quiser criar um jogador novo
                 jnome = str(input("\nIntroduza um nome diferente: "))
@@ -141,10 +131,11 @@ jogar = menu(mensagem_menu)
 
 while jogar:
     print("\nNomes e tokens ja registados:\n")
-    for linha in lista_jogadores_completa:
-        print(linha)
 
-    listar_info_jogadores(caminho_ficheiro, nomes, tokens)
+    info_jogadores(lista_jogadores_completa, nomes, tokens)
+
+    for utilizador in range(len(lista_jogadores_completa)):
+        print("{:<10}{:<10}".format(nomes[utilizador], tokens[utilizador]))
 
     jogador_adicionar, jnome, jtoken, jpontos, jjogos = verificar_novo_jogador()     #verificar se estamos perante um novo jogador, mas constroi logo o jogador
     if jogador_adicionar:                                                   #caso seja um novo jogador:
@@ -240,7 +231,7 @@ while jogar:
 
         num_jogador -= 1        #ir para o outro jogador    
 
-    editar_jogador(caminho_ficheiro, lista_jogadores_completa)      #alterar os dados do vencedor no ficheiro data.csv
+    escrever_data_csv(caminho_ficheiro, lista_jogadores_completa)      #alterar os dados do vencedor no ficheiro data.csv
 
     lista_jogadores_completa = lista_jogadores_csv(caminho_ficheiro)    #atualizar a lista de jogadores completa
 

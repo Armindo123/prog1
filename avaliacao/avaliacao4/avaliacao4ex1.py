@@ -14,10 +14,11 @@ def username():
                 print("Tentativas esgotadas")
 
 def password():
-    for b in range(1,4):
-
+    for b in range(1,4): 
+       
         defaultpassword = "defaultpassword"                     #o input foi feito dentro da funcao para que seja possivel saber se o erro esta no username ou na password e para poder comecar por chamar a funcao
         password1 = input("Introduza a sua password: ")
+       
         if password1 == defaultpassword:
             print("Login efetuado com sucesso")
             break
@@ -25,8 +26,6 @@ def password():
             print("Password errada.")
             if b == 3:
                 print("Tentativas esgotadas")
-
-
 
 username()
 

@@ -13,11 +13,11 @@ def currency(a, b):
 
 
 def convertorDE(a):
-            return a / 1.23785
+    return a / 1.23785
 
 
 def convertorED(a):
-            return a / 0.807852325
+    return a / 0.807852325
 
 a = input("Introduza uma quantia : ")
 b = input("Introduza D ou E (Dolar ou Euro):  ")

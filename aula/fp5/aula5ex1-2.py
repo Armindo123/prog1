@@ -22,13 +22,14 @@ class Aluno():
         self.data = data
         self.nota = 0
         self.qnt = 0
-        self.media = 0
     
     def addnota(self, nota):
-        self.nota += nota
-        self.qnt += 1
-    def final(self):
-        self.media = self.nota / self.qnt
+        if nota >= 0:
+            self.nota += nota
+            self.qnt += 1
+
+    def getmedia(self):
+        return self.nota / self.qnt
 
 
     def __str__ (self):
@@ -45,10 +46,10 @@ d2 = Data(5, 5, "199etrocaopasso")
 aluno1 = Aluno(8170000, "Luis", d1)
 aluno1.addnota(15)
 aluno1.addnota(20)
-aluno1.final()
+print(aluno1.getmedia())
 
 print(aluno1.nota)
-print(aluno1.media)
+
 
 aluno2 = Aluno(8170201, "Antonio", d2)
 print(d1)
